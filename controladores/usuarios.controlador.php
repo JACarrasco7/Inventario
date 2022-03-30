@@ -20,37 +20,48 @@ class ControladorUsuarios
                 $valor = $_POST["usuario"];
 
                 $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $campo, $valor);
-                if ($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == $encriptada) {
-                    if ($respuesta["estado"] == 1) {
+                if ($respuesta["intentos"] != 0) {
+                    if ($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == $encriptada) {
+                        if ($respuesta["estado"] == 1) {
+                            $_SESSION["sesion_iniciada"] = "SI";
 
-                        $_SESSION["sesion_iniciada"] = "SI";
-
-                        $_SESSION["id"] = $respuesta["id"];
-                        $_SESSION["nombre"] = $respuesta["nombre"];
-                        $_SESSION["usuario"] = $respuesta["usuario"];
-                        $_SESSION["foto"] = $respuesta["foto"];
-                        $_SESSION["perfil"] = $respuesta["perfil"];
+                            $_SESSION["id"] = $respuesta["id"];
+                            $_SESSION["nombre"] = $respuesta["nombre"];
+                            $_SESSION["usuario"] = $respuesta["usuario"];
+                            $_SESSION["foto"] = $respuesta["foto"];
+                            $_SESSION["perfil"] = $respuesta["perfil"];
 
                         //Ultimologin
-                        date_default_timezone_set('Europe/Madrid');
-                        $fecha = date('Y-m-d');
-                        $hora = date('H:i:s');
-                        $fechaActual = $fecha . ' ' . $hora;
-                        $campo1 = "ultimo_login";
-                        $valor1 = $fechaActual;
-                        $campo2 = "id";
-                        $valor2 = $respuesta["id"];
+                            date_default_timezone_set('Europe/Madrid');
+                            $fecha = date('Y-m-d');
+                            $hora = date('H:i:s');
+                            $fechaActual = $fecha . ' ' . $hora;
+                            $campo1 = "ultimo_login";
+                            $valor1 = $fechaActual;
+                            $campo2 = "id";
+                            $valor2 = $respuesta["id"];
 
-                        $ultimoLogin = ModeloUsuarios::mdlActualizarCampoUsuario($tabla, $campo1, $valor1, $campo2, $valor2);
+                            $ultimoLogin = ModeloUsuarios::mdlActualizarCampoUsuario($tabla, $campo1, $valor1, $campo2, $valor2);
 
-                        if ($ultimoLogin == "SI") {
-                            header('Location: inicio');
+                            if ($ultimoLogin == "SI") {
+                                header('Location: inicio');
+                            }
+                        } else {
+                            echo '<br><div class="alert alert-danger">Este usuario se no tiene acceso actualmente</div>';
                         }
                     } else {
-                        echo '<br><div class="alert alert-danger">Este usuario se no tiene acceso actualmente</div>';
+                        $intentosRestantes = $respuesta['intentos'] - 1;
+                        ModeloUsuarios::mdlRestarIntentos($tabla, $respuesta['usuario'], $intentosRestantes);
+                        if ($intentosRestantes == 0) {
+                            echo '<br><div class="alert alert-danger">Usuario bloqueado. Pongase en contacto con el administrador para restablecerlo</div>';
+                            ModeloUsuarios::mdldesactivarintentos($tabla, $respuesta['usuario']);
+                        } else {
+                            echo '<br><div class="alert alert-danger">Los datos introducidos no coinciden. le quedan ' . ($respuesta['intentos'] - 1) . ' intentos</div>';
+                        }
+
                     }
                 } else {
-                    echo '<br><div class="alert alert-danger">Los datos introducidos no coinciden</div>';
+                    echo '<br><div class="alert alert-danger">Usuario bloqueado. Pongase en contacto con el administrador para restablecerlo</div>';
                 }
             }
         }
@@ -158,7 +169,6 @@ class ControladorUsuarios
 
     public function ctrEditarUsuario()
     {
-
         if (isset($_POST["editarUsuario"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"]) && !empty($_POST["editarNombre"])) {
 

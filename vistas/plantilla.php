@@ -24,13 +24,16 @@ session_start();
   <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="vistas/dist/css/AdminLTE.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+  <!-- AdminLTE Skins -->
   <link rel="stylesheet" href="vistas/dist/css/skins/_all-skins.min.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <!-- DataTables -->
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
+ 
   <!--================================================== *
  * ==========  PLUGINS DE JAVASCRIPT  ========== *
  * ================================================== -->
@@ -48,8 +51,10 @@ session_start();
   <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
   <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
   <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
-<!-- SweetAlert2 -->
+  <!-- SweetAlert2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="vistas/plugins/iCheck/icheck.min.js"></script>
 </head>
 <!--================================================== *
  * ==========  CUERPO DOCUMENTO  ========== *
@@ -103,6 +108,10 @@ session_start();
   <script src="vistas/js/usuario.js"></script>
   <!-- Categoria -->
   <script src="vistas/js/categorias.js"></script>
+  <!-- Categoria -->
+  <script src="vistas/js/clientes.js"></script>
+  <!-- Productos -->
+  <script src="vistas/js/productos.js"></script>
 </body>
 
 </html>

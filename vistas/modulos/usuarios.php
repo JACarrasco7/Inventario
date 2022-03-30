@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li><a href="usuario">Administracion Usuarios</a></li>
+      <li><a href="usuarios">Administracion Usuarios</a></li>
     </ol>
   </section>
   <section class="content">
@@ -47,7 +47,7 @@
                   if ($valor["foto"] != "") {
                     echo ' <img src="' . $valor["foto"] . '" class="user-image" alt="Imagen de usuario" width="35px">';
                   } else {
-                    echo ' <img src="vistas/img/usuarios/user-anonimo.png" class="user-image" alt="Imagen de usuario" width="35px">';
+                    echo ' <img src="vistas/img/usuarios/default/user-anonimo.jpg" class="user-image" alt="Imagen de usuario" width="35px">';
                   }
                   ?></td>
               <td><?php echo $valor["perfil"] ?></td>
@@ -138,7 +138,7 @@
               <div class="panel">Subir foto</div>
               <input type="file" class="nuevaFoto" name="nuevaFoto">
               <p class="help-block">Peso maximo de la foto: 5Mb</p>
-              <img src="vistas/img/usuarios/user-anonimo.png" class="thumbnail previsualizar" width="100px">
+              <img src="vistas/img/usuarios/default/user-anonimo.jpg" class="img-thumbnail previsualizar2" width="100px">
             </div>
           </div>
         </div>
@@ -216,14 +216,14 @@
               <div class="panel">Subir foto</div>
               <input type="file" class="nuevaFoto" name="editarFoto">
               <p class="help-block">Peso maximo de la foto: 5Mb</p>
-              <img src="vistas/img/usuarios/user-anonimo.png" class="thumbnail previsualizar" width="100px">
+              <img src="vistas/img/usuarios/default/user-anonimo.jpg" class="thumbnail previsualizar" width="100px">
               <input type="hidden" name="fotoActual" id=fotoActual>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary miboton">Editar usuario</button>
+          <button type="submit" class="btn btn-primary">Editar usuario</button>
         </div>
         <?php 
         $editarUsuario = new ControladorUsuarios();

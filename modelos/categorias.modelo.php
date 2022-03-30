@@ -30,7 +30,7 @@ class ModeloCategorias
         $conexion = Conexion::conectar();
         $sentencia = $conexion->prepare("INSERT INTO $tabla(categoria) 
                                          VALUES(:nombre)");
-        $sentencia->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+        $sentencia->bindParam(":nombre", $datos, PDO::PARAM_STR);
 
         if ($sentencia->execute()) {
             return "OK";
@@ -46,10 +46,11 @@ class ModeloCategorias
     //EDITAR USUARIO
     static public function mdlEditarCategorias($tabla, $datos)
     {
-        $conexion = Conexion::conectar();
-        $sentencia = $conexion->prepare("UPDATE $tabla SET categoria = :nombre WHERE categoria = :nombre");
 
-        $sentencia->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+        $conexion = Conexion::conectar();
+        $sentencia = $conexion->prepare("UPDATE $tabla SET categoria = :nombre WHERE id = :id");
+        $sentencia->bindParam(":nombre", $datos["categoria"], PDO::PARAM_STR);
+        $sentencia->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
         if ($sentencia->execute()) {
             return "SI";
@@ -60,6 +61,26 @@ class ModeloCategorias
         $sentencia->close();
 
         $sentencia = null;
+    }
+
+        //BORRAR CATEGORIA
+    static public function mdlBorrarCategorias($tabla, $datos)
+    {
+        $conexion = Conexion::conectar();
+        $sentencia = $conexion->prepare("DELETE FROM $tabla WHERE id = :id");
+
+        $sentencia->bindParam(":id", $datos, PDO::PARAM_INT);
+
+        if ($sentencia->execute()) {
+            return "SI";
+        } else {
+            return "error";
+        }
+
+        $sentencia->close();
+
+        $sentencia = null;
+
     }
 
 }

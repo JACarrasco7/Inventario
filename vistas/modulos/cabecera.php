@@ -22,14 +22,15 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                       <?php 
+                        <?php 
                         if ($_SESSION["foto"] != "") {
                             echo ' <img src="' . $_SESSION["foto"] . '" class="user-image" alt="Imagen de usuario">';
                         } else {
-                            echo ' <img src="vistas/img/usuarios/user-anonimo.png" class="user-image" alt="Imagen de usuario">';
+                            echo ' <img src="vistas/img/usuarios/default/user-anonimo.jpg" class="user-image" alt="Imagen de usuario">';
                         }
                         ?>
-                        <span class="hidden-xs"><?php echo $_SESSION["nombre"] ?></span>
+                        <span class="hidden-xs">
+                            <?php echo $_SESSION["nombre"] ?></span>
                     </a>
                     <!-- SALIR -->
                     <ul class="dropdown-menu">

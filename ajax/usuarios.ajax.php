@@ -6,6 +6,7 @@ require_once "../modelos/usuarios.modelo.php";
 class AjaxUsuarios
 {
 
+
     //EDITAR USUARIOS
 
     public $idUsuario;

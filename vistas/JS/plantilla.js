@@ -12,8 +12,7 @@ $(".tablas").DataTable({
     sLengthMenu: "Mostrar _MENU_ registros",
     sZeroRecords: "No se encontraron resultados",
     sEmptyTable: "Ningún dato disponible en esta tabla",
-    sInfo:
-      "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
     sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
     sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
     sInfoPostFix: "",
@@ -33,3 +32,13 @@ $(".tablas").DataTable({
     }
   }
 });
+
+/**================================================== *
+ * ==========  ICHECK  ========== *
+ * ================================================== */
+
+//iCheck for checkbox and radio inputs
+$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+  checkboxClass: 'icheckbox_minimal-blue',
+  radioClass: 'iradio_minimal-blue'
+})

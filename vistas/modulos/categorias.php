@@ -1,22 +1,21 @@
-<!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
       Administracion Categorias
       </h1>
-      <ol class="breadcrumb">
-        <li><a hrefinicioi class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="categorias">Administracion Categorias</a></li>
-      </ol>
+    <ol class="breadcrumb">
+      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="categorias">Administracion Categorias</a></li>
+    </ol>
     </section>
     <section class="content">
     <div class="box">
       <div class="box-header with-border">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">Añadir usuarios</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">Añadir categoria</button>
       </div>
       <div class="box-body">
-        <table class="table table-bordered table-striped dt-responsive tablas">
+        <tarble class="table table-bordered table-striped dt-responsive tablas">
           <thead>
             <tr>
               <th>Nº</th>
@@ -55,7 +54,7 @@
           <?php 
         } ?>
           </tbody>
-        </table>
+        </tarble>
       </div>
     </div>
   </section>
@@ -78,9 +77,9 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-user"></i>
+                  <i class="fa fa-clipboard"></i>
                 </span>
-                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Introduzca el nombre" required="">
+                <input type="text" class="form-control input-lg" name="nuevaCategoria" id="nuevaCategoria" placeholder="Introduzca el nombre" required="">
               </div>
             </div>
           </div>
@@ -116,26 +115,27 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-user"></i>
+                  <i class="fa fa-clipboard"></i>
                 </span>
                 <input type="text" class="form-control input-lg" id="editarCategoria" name="editarCategoria" value="">
+                <input type="hidden" id="idCategoria" name="idCategoria">
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary miboton">Editar categoria</button>
+          <button type="submit" class="btn btn-primary">Editar categoria</button>
         </div>
         <?php 
-        //$editarCategoria = new ControladorCategorias();
-        //$editarCategoria->ctrEditarCategoria();
+        $editarCategoria = new ControladorCategorias();
+        $editarCategoria->ctrEditarCategoria();
         ?>
       </form>
     </div>
   </div>
 </div>
         <?php 
-        //$BorrarCategoria = new ControladorCategorias();
-        //$BorrarCategoria->ctrBorrarCategoria();
+        $BorrarCategoria = new ControladorCategorias();
+        $BorrarCategoria->ctrBorrarCategoria();
         ?>
